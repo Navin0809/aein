@@ -52,7 +52,6 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
-      # Named volume for persistent voice file storage
       - voice_data:/app/uploads/voice
 
   frontend:
@@ -61,11 +60,12 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./frontend/public:/usr/share/nginx/html
       - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
-      # Same volume — nginx serves voice files directly (no backend hop)
       - voice_data:/usr/share/nginx/html/uploads/voice
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - whispr_net
     depends_on:
@@ -73,7 +73,6 @@ services:
 
 volumes:
   mongo_data:
-  # Persists all voice message audio files across container restarts
   voice_data:
 
 networks:
