@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <title>Whispr — Talk Different</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="auth-container">
+    <!-- Left panel -->
+    <div class="brand-panel">
+      <div class="brand-logo">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="24" fill="var(--accent)"/>
+          <path d="M12 18C12 15.8 13.8 14 16 14H32C34.2 14 36 15.8 36 18V26C36 28.2 34.2 30 32 30H26L20 36V30H16C13.8 30 12 28.2 12 26V18Z" fill="white"/>
+          <circle cx="19" cy="22" r="1.5" fill="var(--accent)"/>
+          <circle cx="24" cy="22" r="1.5" fill="var(--accent)"/>
+          <circle cx="29" cy="22" r="1.5" fill="var(--accent)"/>
+        </svg>
+        <span class="brand-name">whispr</span>
+      </div>
+      <div class="brand-headline">
+        <h1>Talk.<br/>Connect.<br/><em>Be present.</em></h1>
+        <p>A minimal space for real conversations. No noise, no ads, no tracking. Just you and the people you choose.</p>
+      </div>
+      <div class="brand-features">
+        <div class="feature"><span class="dot"></span>Real-time messaging</div>
+        <div class="feature"><span class="dot"></span>Friend-only privacy</div>
+        <div class="feature"><span class="dot"></span>Zero phone numbers</div>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <div class="form-panel">
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('login')">Sign in</button>
+        <button class="tab" onclick="switchTab('register')">Create account</button>
+      </div>
+
+      <!-- Login -->
+      <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="loginUsername" placeholder="your_username" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required />
+        </div>
+        <div id="loginError" class="error-msg"></div>
+        <button type="submit" class="btn-primary" id="loginBtn">
+          <span>Sign in</span>
+          <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <!-- Register -->
+      <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+        <div class="field">
+          <label>Choose a username</label>
+          <input type="text" id="regUsername" placeholder="cool_username" autocomplete="username" pattern="[a-zA-Z0-9_]+" minlength="3" maxlength="20" required />
+          <span class="field-hint">Letters, numbers, underscores only</span>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password" minlength="6" required />
+        </div>
+        <div class="field">
+          <label>Confirm password</label>
+          <input type="password" id="regConfirm" placeholder="••••••••" autocomplete="new-password" required />
+        </div>
+        <div id="registerError" class="error-msg"></div>
+        <button type="submit" class="btn-primary" id="registerBtn">
+          <span>Create account</span>
+          <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>
